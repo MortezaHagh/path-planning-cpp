@@ -40,7 +40,7 @@ class AStar {
 
     // astar config
     bool from_start = true;
-    float head_cost_coeff = 0.0;
+    float head_cost_coeff = 1.0;
 
     // statistics
     int n_closed;

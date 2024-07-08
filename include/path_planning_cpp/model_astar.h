@@ -43,7 +43,7 @@ class TopNode {
     int nn = 0;
     int ind = -1;
     int p_nn = 0;
-    // float head = 0;
+    float head = 0;
     bool visited = false;
     float g_cost = MAX_COST;
     float f_cost = MAX_COST;

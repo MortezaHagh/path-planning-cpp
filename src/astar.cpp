@@ -68,7 +68,7 @@ void AStar::create_top_node() {
     top_node = new TopNode;
     top_node->ind = 0;
     top_node->visited = true;
-    // top_node->head = start.head;
+    top_node->head = start.head;
     top_node->nn = start.nn;
     top_node->p_nn = start.nn;
     top_node->g_cost = 0;
@@ -81,15 +81,18 @@ bool AStar::expand(std::vector<TopNode>* successors) {
         }
         n_expanded += 1;
         TopNode* successor = new TopNode;
-        // successor->head = succ.head;
+        successor->head = succ.head;
         successor->nn = succ.nn;
         successor->p_nn = top_node->nn;
-        // successor->h_cost = 0 * head_cost_coeff;
-        successor->g_cost = top_node->g_cost + succ.cost;  //  + successor->h_cost;
-        // successor->h_cost = utils::distance(goal.coord, succ.coord, model.dist_type);
+        float head_cost = std::fabs(successor->head - top_node->head);
+        head_cost = (head_cost)*head_cost_coeff / (M_PI / 2);
+        successor->g_cost = top_node->g_cost + succ.cost + head_cost;
         float h_cost = utils::distance(goal.coord, succ.coord, model.dist_type);
-        successor->f_cost = successor->g_cost + h_cost;  // successor->h_cost;
+        successor->f_cost = successor->g_cost + h_cost;
         successors->push_back(*successor);
+        // successor->g_cost = top_node->g_cost + succ.cost;
+        // successor->h_cost = utils::distance(goal.coord, succ.coord, model.dist_type);
+        // successor->f_cost = successor->g_cost + successor->h_cost;
     }
 
     if (successors->size() == 0) {
