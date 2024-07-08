@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="path_planning_cpp" name="cpt" type="pp_astar" output="screen" />
+</launch>

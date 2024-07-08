@@ -1,0 +1,8 @@
+{
+    "n_adj": 4,
+    "map_name": "map1",
+    "dist_type": "manhattan",
+    "expand_method": "random",
+    "from_start": true,
+    "head_cost_coeff": 0.0
+}
